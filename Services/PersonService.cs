@@ -37,7 +37,6 @@ namespace Services
 
        public void DeletePerson(person person)
        {
-           personJobRepository.Delete(person.job);
            personRepository.Delete(person);
        }
     }

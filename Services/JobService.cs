@@ -10,34 +10,34 @@ namespace Services
 {
     public class JobService : IJobService
     {
-        private IRepository<job> jobRepository;
+        private IRepository<Job> jobRepository;
 
-        public JobService(IRepository<job> jobRepository)
+        public JobService(IRepository<Job> jobRepository)
         {
             this.jobRepository = jobRepository;
         }
 
-        public IQueryable<job> GetJobs()
+        public IQueryable<Job> GetJobs()
         {
             return jobRepository.Table;
         }
 
-        public job GetJob(long id)
+        public Job GetJob(long id)
         {
             return jobRepository.GetById(id);
         }
 
-        public void InsertJob(job person)
+        public void InsertJob(Job person)
         {
             jobRepository.Insert(person);
         }
 
-        public void UpdateJob(job person)
+        public void UpdateJob(Job person)
         {
             jobRepository.Update(person);
         }
 
-        public void DeleteJob(job job)
+        public void DeleteJob(Job job)
         {
             jobRepository.Delete(job);
         }

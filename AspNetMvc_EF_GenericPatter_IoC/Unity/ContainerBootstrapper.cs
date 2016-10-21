@@ -31,8 +31,8 @@ namespace MVC.Unity
         {
             var container = new UnityContainer();
             container.RegisterType<IDbContext, TeijonDbContext>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IRepository<person>, Repository<person>>();
-            container.RegisterType<IRepository<job>, Repository<job>>();
+            container.RegisterType<IRepository<Person>, Repository<Person>>();
+            container.RegisterType<IRepository<Job>, Repository<Job>>();
             container.RegisterType<IPersonService, PersonService>();
             container.RegisterType<IJobService, JobService>();
 

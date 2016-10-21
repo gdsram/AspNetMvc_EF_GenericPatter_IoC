@@ -6,36 +6,36 @@ namespace Services
 {
    public  class PersonService : IPersonService
     {
-       private IRepository<person> personRepository;
-       private IRepository<job> personJobRepository;
+       private IRepository<Person> personRepository;
+       private IRepository<Job> personJobRepository;
 
-       public PersonService(IRepository<person> personRepository, IRepository<job> personJobRepository)
+       public PersonService(IRepository<Person> personRepository, IRepository<Job> personJobRepository)
        {
            this.personRepository = personRepository;
            this.personJobRepository = personJobRepository;
        }
 
-       public IQueryable<person> GetPeople()
+       public IQueryable<Person> GetPeople()
        {
            return personRepository.Table;
        }
 
-       public person GetPerson(long id)
+       public Person GetPerson(long id)
        {
            return personRepository.GetById(id);
        }
 
-       public void InsertPerson(person person)
+       public void InsertPerson(Person person)
        {
            personRepository.Insert(person);
        }
 
-       public void UpdatePerson(person person)
+       public void UpdatePerson(Person person)
        {
            personRepository.Update(person);
        }
 
-       public void DeletePerson(person person)
+       public void DeletePerson(Person person)
        {
            personRepository.Delete(person);
        }

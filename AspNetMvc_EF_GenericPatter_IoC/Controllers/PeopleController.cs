@@ -43,7 +43,7 @@ namespace MVC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            person person = personService.GetPerson(id ?? 0);
+            Person person = personService.GetPerson(id ?? 0);
             if (person == null)
             {
                 return HttpNotFound();
@@ -63,7 +63,7 @@ namespace MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,name,sex,developer,description,id_job")] person person)
+        public ActionResult Create([Bind(Include = "id,name,sex,developer,description,id_job")] Person person)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace MVC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            person person = personService.GetPerson(id ?? 0);
+            Person person = personService.GetPerson(id ?? 0);
             if (person == null)
             {
                 return HttpNotFound();
@@ -99,7 +99,7 @@ namespace MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,name,sex,developer,description,id_job")] person person)
+        public ActionResult Edit([Bind(Include = "id,name,sex,developer,description,id_job")] Person person)
         {
             if (ModelState.IsValid)
             {
@@ -123,7 +123,7 @@ namespace MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            person person = personService.GetPerson(id ?? 0);
+            Person person = personService.GetPerson(id ?? 0);
             if (person == null)
             {
                 return HttpNotFound();
@@ -136,7 +136,7 @@ namespace MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            person person = personService.GetPerson(id);
+            Person person = personService.GetPerson(id);
             personService.DeletePerson(person);
 
             return RedirectToAction("Index");

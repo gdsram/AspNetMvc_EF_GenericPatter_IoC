@@ -5,10 +5,10 @@ namespace Services
 {
    public interface IPersonService
     {
-       IQueryable<person> GetPeople();
-       person GetPerson(long id);
-       void InsertPerson(person person);
-       void UpdatePerson(person person);
-       void DeletePerson(person person);
+       IQueryable<Person> GetPeople();
+       Person GetPerson(long id);
+       void InsertPerson(Person person);
+       void UpdatePerson(Person person);
+       void DeletePerson(Person person);
     }
 }

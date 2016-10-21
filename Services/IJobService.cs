@@ -9,10 +9,10 @@ namespace Services
 {
     public interface IJobService
     {
-        IQueryable<job> GetJobs();
-        job GetJob(long id);
-        void InsertJob(job job);
-        void UpdateJob(job job);
-        void DeleteJob(job job);
+        IQueryable<Job> GetJobs();
+        Job GetJob(long id);
+        void InsertJob(Job job);
+        void UpdateJob(Job job);
+        void DeleteJob(Job job);
     }
 }

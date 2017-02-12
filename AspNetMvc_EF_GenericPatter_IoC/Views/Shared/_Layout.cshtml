@@ -6,9 +6,10 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    @Scripts.Render("~/bundles/AngularJS")
+    @Scripts.Render("~/bundles/MvcApp")
 </head>
-<body>
+<body ng-app="AspNetMvc_EF_GenericPattern_IoC" ng-controller="LandingPageController">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">

@@ -30,11 +30,28 @@ namespace MVC.Unity
         private static IUnityContainer BuildUnityContainer()
         {
             var container = new UnityContainer();
+
+            // Database Contexts
             container.RegisterType<IDbContext, TeijonDbContext>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IDbContext, ManyToManyDBContext>(new ContainerControlledLifetimeManager());
+
+            // Repositories
             container.RegisterType<IRepository<Person>, Repository<Person>>();
             container.RegisterType<IRepository<Job>, Repository<Job>>();
+            container.RegisterType<IRepository<JobPost>, Repository<JobPost>>();
+            container.RegisterType<IRepository<JobTag>, Repository<JobTag>>();
+            container.RegisterType<IRepository<Employer>, Repository<Employer>>();
+
+            container.RegisterType<IManyToManyRepository<JobPost, JobTag>, ManyToManyRepository<JobPost, JobTag>>();
+            container.RegisterType<IManyToManyRepository<JobTag, JobPost>, ManyToManyRepository<JobTag, JobPost>>();
+
+            // Services
             container.RegisterType<IPersonService, PersonService>();
             container.RegisterType<IJobService, JobService>();
+            container.RegisterType<IJobPostService, JobPostService>();
+            container.RegisterType<IJobTagService, JobTagService>();
+            container.RegisterType<IEmployerService, EmployerService>();
+
 
             MvcUnityContainer.Container = container;
             return container;

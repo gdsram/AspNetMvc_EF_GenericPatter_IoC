@@ -5,9 +5,11 @@
 }
 
 <h2>Index</h2>
+<h1>{{models.helloAngular}}</h1>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @*@Html.ActionLink("Create New", "Create")*@
+    <a href="/#/Create">Create New</a>
 </p>
 <table class="table">
     <tr>
@@ -48,8 +50,11 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @*<a href="/#/Edit">Edit</a>*@
+            @*@Html.ActionLink("Details", "Details", new { id=item.id }) |*@
+            <a href="/#/Details/2">Details</a>|
             @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @*<a href="/#/Delete">Delete</a>*@
         </td>
     </tr>
 }

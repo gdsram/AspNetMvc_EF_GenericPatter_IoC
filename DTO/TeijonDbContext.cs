@@ -4,6 +4,7 @@ namespace DTO
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
+    using System.Data.Entity.Infrastructure;
 
     public partial class TeijonDbContext : DbContext, IDbContext
     {
@@ -45,5 +46,11 @@ namespace DTO
         {
             return base.Set<TEntity>();
         }
+        
+        public new DbEntityEntry<TEntity> Entry<TEntity>(TEntity t) where TEntity : BaseEntity
+        {
+            return base.Entry<TEntity>(t);
+        }
+
     }
 }

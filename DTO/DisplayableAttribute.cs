@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    public abstract class BaseEntity
+    public class DisplayableAttribute : Attribute
     {
-        public int Id { get; set; }
     }
 }

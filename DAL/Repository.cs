@@ -7,21 +7,34 @@ using System.Data.Entity.Migrations;
 
 namespace DAL
 {
+    /// <summary>
+    /// Generic Repository
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
    public class Repository<T> : IRepository<T> where T: BaseEntity
     {
-        private readonly IDbContext _context;
+        private readonly IDbContext dbContext;
         private IDbSet<T> _entities;
 
         public Repository(IDbContext context)
         {
-            this._context = context;
+            this.dbContext = context;
         }
 
+        /// <summary>
+        /// Returns an entity intance
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public T GetById(object id)
         {
             return this.Entities.Find(id);
         }
 
+        /// <summary>
+        /// Insert a new entity
+        /// </summary>
+        /// <param name="entity"></param>
         public void Insert(T entity)
         {
             try
@@ -31,7 +44,7 @@ namespace DAL
                     throw new ArgumentNullException("entity");
                 }
                 this.Entities.Add(entity);
-                this._context.SaveChanges();
+                this.dbContext.SaveChanges();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -50,6 +63,10 @@ namespace DAL
             }
         }
 
+        /// <summary>
+        /// Update an entity
+        /// </summary>
+        /// <param name="entity"></param>
         public void Update(T entity)
         {
             try
@@ -59,7 +76,7 @@ namespace DAL
                     throw new ArgumentNullException("entity");
                 }
                 this.Entities.AddOrUpdate(entity);
-                this._context.SaveChanges();
+                this.dbContext.SaveChanges();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -76,6 +93,10 @@ namespace DAL
             }
         }
 
+        /// <summary>
+        /// Delete an entity
+        /// </summary>
+        /// <param name="entity"></param>
         public void Delete(T entity)
         {
             try
@@ -85,7 +106,7 @@ namespace DAL
                     throw new ArgumentNullException("entity");
                 }
                 this.Entities.Remove(entity);
-                this._context.SaveChanges();
+                this.dbContext.SaveChanges();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -103,6 +124,9 @@ namespace DAL
             }
         }
 
+        /// <summary>
+        /// Returns an Linq IQueryable object
+        /// </summary>
         public virtual IQueryable<T> Table
         {
             get
@@ -111,13 +135,16 @@ namespace DAL
             }
         }
 
+        /// <summary>
+        /// Preload a list of entities
+        /// </summary>
         private IDbSet<T> Entities
         {
             get
             {
                 if (_entities == null)
                 {
-                    _entities = _context.Set<T>();
+                    _entities = dbContext.Set<T>();
                 }
                 return _entities;
             }

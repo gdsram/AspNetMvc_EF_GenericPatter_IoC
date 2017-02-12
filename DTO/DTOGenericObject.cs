@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    public abstract class BaseEntity
+    public class DTOGenericObject
     {
-        public int Id { get; set; }
+        public long ID { get; set; }
+        public string Name { get; set; }
     }
 }

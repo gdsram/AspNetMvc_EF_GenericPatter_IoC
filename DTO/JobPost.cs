@@ -6,26 +6,24 @@ namespace DTO
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("job")]
-    public partial class Job : BaseEntity
+    [Table("JobPost")]
+    public partial class JobPost : BaseEntity
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Job()
+        public JobPost()
         {
-            people = new HashSet<Person>();
+            JobTags = new HashSet<JobTag>();
         }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public new int Id { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string name { get; set; }
+        public string Title { get; set; }
 
-        [Column(TypeName = "text")]
-        public string description { get; set; }
+        public int EmployerID { get; set; }
+
+        public virtual Employer Employer { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Person> people { get; set; }
+        public virtual ICollection<JobTag> JobTags { get; set; }
     }
 }

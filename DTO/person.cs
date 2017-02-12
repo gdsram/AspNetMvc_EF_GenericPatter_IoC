@@ -10,7 +10,7 @@ namespace DTO
     public partial class Person : BaseEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int id { get; set; }
+        public new int Id { get; set; }
 
         [Required]
         [StringLength(30)]

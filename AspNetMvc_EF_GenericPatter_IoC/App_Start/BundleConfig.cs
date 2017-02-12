@@ -20,12 +20,22 @@ namespace MVC
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/bootstrap.js").Include(
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap.css").Include(
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/AngularJS").Include(
+                    "~/Scripts/angular.min.js").Include(
+                    "~/Scripts/angular-route.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/MvcApp").Include(
+                    "~/Scripts/AspNetMvc_EF_GenericPattern_IoC.js").IncludeDirectory(
+                    "~/Scripts/Controllers", "*.js"));
+
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

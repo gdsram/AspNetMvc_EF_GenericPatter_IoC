@@ -232,6 +232,8 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\JobPostFromScratchViewModel.cs" />
+    <Compile Include="Models\JobPostModelBinder.cs" />
     <Compile Include="Models\JobPostViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -320,6 +322,12 @@
     <Content Include="Views\JobPosts\Details.cshtml" />
     <Content Include="Views\JobPosts\Edit.cshtml" />
     <Content Include="Views\JobPosts\Index.cshtml" />
+    <Content Include="Views\Jobs\Create.cshtml" />
+    <Content Include="Views\Jobs\Delete.cshtml" />
+    <Content Include="Views\Jobs\Details.cshtml" />
+    <Content Include="Views\Jobs\Edit.cshtml" />
+    <Content Include="Views\Jobs\Index.cshtml" />
+    <Content Include="Views\JobPosts\CreateFromScratch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

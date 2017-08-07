@@ -41,12 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmployerService.cs" />
-    <Compile Include="IEmployerService.cs" />
-    <Compile Include="IJobPostService.cs" />
-    <Compile Include="IJobService.cs" />
-    <Compile Include="IJobTagService.cs" />
-    <Compile Include="IPersonService.cs" />
-    <Compile Include="IService.cs" />
+    <Compile Include="Interfaces\IEmployerService.cs" />
+    <Compile Include="Interfaces\IJobPostService.cs" />
+    <Compile Include="Interfaces\IJobService.cs" />
+    <Compile Include="Interfaces\IJobTagService.cs" />
+    <Compile Include="Interfaces\IPersonService.cs" />
+    <Compile Include="Interfaces\IService.cs" />
     <Compile Include="JobPostService.cs" />
     <Compile Include="JobService.cs" />
     <Compile Include="JobTagService.cs" />

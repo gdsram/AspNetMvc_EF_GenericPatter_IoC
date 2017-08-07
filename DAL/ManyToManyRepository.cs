@@ -66,6 +66,52 @@ namespace DAL
         }
 
         /// <summary>
+        /// Create a relationship between one object and a list of other objects. None of the object exists in the database yet
+        /// </summary>
+        /// <param name="entity1"></param>
+        /// <param name="entities"></param>
+        /// <param name="navigationProperty"></param>
+        public void InsertWithoutData(T1 entity1, List<T2> entities, string navigationProperty)
+        {
+            try
+            {
+                if (entity1 == null || entities == null)
+                {
+                    throw new ArgumentNullException("entity");
+                }
+
+                Entities1.Add(entity1);
+                var navigationPropertyList = entity1
+                .GetType()
+                .GetProperty(navigationProperty)
+                .GetValue(entity1, null);
+
+                foreach (var entity2 in entities)
+                {
+                    Entities2.Add(entity2);
+                    ((ICollection<T2>)navigationPropertyList).Add(entity2);
+                }
+
+                this.dbContext.SaveChanges();
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                var msg = string.Empty;
+
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        msg += string.Format("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage) + Environment.NewLine;
+                    }
+                }
+
+                var fail = new Exception(msg, dbEx);
+                throw fail;
+            }
+        }
+
+        /// <summary>
         /// Insert a relationship when data already exists
         /// </summary>
         /// <param name="entity1ID"></param>
@@ -114,14 +160,22 @@ namespace DAL
             try
             {
                 T1 t1 = Entities1.Find(entity1ID);
-                
+
+                //foreach (var id in entities2ID)
+                //{
+                //    T2 t2 = Entities2.Find(id); 
+
+                //    var navigationPropertyAux = t1.GetType().GetProperty(navigationProperty).GetValue(t1);
+                //    ((ICollection<T2>)navigationPropertyAux).Add(t2);
+                //}
+                List<T2> entities2ToAdd = new List<T2>();
                 foreach (var id in entities2ID)
                 {
-                    T2 t2 = Entities2.Find(id); 
-
-                    var navigationPropertyAux = t1.GetType().GetProperty(navigationProperty).GetValue(t1);
-                    ((ICollection<T2>)navigationPropertyAux).Add(t2);
+                    entities2ToAdd.Add(Entities2.Find(id));
                 }
+
+                var navigationPropertyAux = t1.GetType().GetProperty(navigationProperty).GetValue(t1);
+                ((List<T2>)navigationPropertyAux).AddRange(entities2ToAdd);
 
                 this.dbContext.SaveChanges();
             }

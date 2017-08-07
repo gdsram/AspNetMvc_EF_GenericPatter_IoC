@@ -1,11 +1,12 @@
 ﻿using System.Linq;
 using DTO;
+using System.Collections.Generic;
 
-namespace Services
+namespace Services.Interfaces
 {
    public interface IPersonService
     {
-       IQueryable<Person> GetPeople();
+       IEnumerable<Person> GetPeople();
        Person GetPerson(long id);
        void InsertPerson(Person person);
        void UpdatePerson(Person person);

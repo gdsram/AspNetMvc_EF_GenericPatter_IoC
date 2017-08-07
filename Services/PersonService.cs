@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using DAL;
 using DTO;
+using System.Collections.Generic;
+using Services.Interfaces;
 
 namespace Services
 {
@@ -15,9 +17,9 @@ namespace Services
            this.personJobRepository = personJobRepository;
        }
 
-       public IQueryable<Person> GetPeople()
+       public IEnumerable<Person> GetPeople()
        {
-           return personRepository.Table;
+           return personRepository.GetAll;
        }
 
        public Person GetPerson(long id)

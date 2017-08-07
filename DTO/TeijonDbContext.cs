@@ -1,14 +1,14 @@
+using System;
+using System.Data.Entity;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Data.Entity.Infrastructure;
+
 namespace DTO
 {
-    using System;
-    using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
-    using System.Data.Entity.Infrastructure;
-
-    public partial class TeijonDbContext : DbContext, IDbContext
+    public partial class CustomBDContext : DbContext, IDbContext
     {
-        public TeijonDbContext()
+        public CustomBDContext()
             : base("name=TeijonModel")
         {
         }

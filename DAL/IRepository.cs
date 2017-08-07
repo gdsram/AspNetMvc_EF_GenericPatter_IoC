@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using DTO;
+using System.Collections.Generic;
 
 namespace DAL
 {
@@ -9,6 +10,6 @@ namespace DAL
         void Insert(T entity);
         void Update(T entity);
         void Delete(T entity);
-        IQueryable<T> Table { get; }
+        IEnumerable<T> GetAll { get; }
     }
 }

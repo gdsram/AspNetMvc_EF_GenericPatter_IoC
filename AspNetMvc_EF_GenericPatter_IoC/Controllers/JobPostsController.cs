@@ -8,8 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using DTO;
 using AspNetMvc_EF_GenericPattern_IoC.Models;
-using Services;
-using System.Collections.ObjectModel;
+using Services.Interfaces;
 
 namespace AspNetMvc_EF_GenericPattern_IoC.Controllers
 {
@@ -93,6 +92,39 @@ namespace AspNetMvc_EF_GenericPattern_IoC.Controllers
 
             ViewBag.EmployerID = new SelectList(employerService.List(), "Id", "FullName", jobPost.EmployerID);
             return View(jobPostViewModel);
+        }
+
+        public ActionResult CreateFromScratch()
+        {
+            var jobPostViewModel = new JobPostFromScratchViewModel();
+
+            return View(jobPostViewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateFromScratch(JobPostFromScratchViewModel model)
+        {
+            if (model == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var jobPost = new JobPost();
+            var jobTag = new List<JobTag>();
+            var employer = new Employer();
+
+            if (TryUpdateModel(jobPost, "JobPost", new string[] { "Title" }) 
+                || TryUpdateModel(employer, "Employer", new string[] { "FullName" }))
+            {
+                var allTags = jobTagService.GetAll().ToList();
+                //jobPost.JobTags = allTags.Where(x => jobPostViewModel.SelectedJobTags.Contains(x.Id)).ToList();
+                jobPostService.Insert(jobPost);
+
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Index");
         }
 
         // GET: JobPosts/Edit/5

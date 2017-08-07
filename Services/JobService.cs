@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Services.Interfaces;
 
 namespace Services
 {
@@ -17,9 +18,9 @@ namespace Services
             this.jobRepository = jobRepository;
         }
 
-        public IQueryable<Job> GetJobs()
+        public IEnumerable<Job> GetJobs()
         {
-            return jobRepository.Table;
+            return jobRepository.GetAll;
         }
 
         public Job GetJob(long id)

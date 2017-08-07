@@ -1,11 +1,11 @@
+using System;
+using System.Data.Entity;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Data.Entity.Infrastructure;
+
 namespace DTO
 {
-    using System;
-    using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
-    using System.Data.Entity.Infrastructure;
-
     public partial class ManyToManyDBContext : DbContext, IDbContext
     {
         public ManyToManyDBContext()
@@ -39,5 +39,7 @@ namespace DTO
         {
             return base.Entry<TEntity>(t);
         }
+
+        public System.Data.Entity.DbSet<DTO.Job> Jobs { get; set; }
     }
 }

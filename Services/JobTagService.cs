@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DTO;
 using DAL;
+using Services.Interfaces;
 
 namespace Services
 {
@@ -36,9 +37,9 @@ namespace Services
             jobTagRepository.Insert(entity);
         }
 
-        public IQueryable<JobTag> GetAll()
+        public IEnumerable<JobTag> GetAll()
         {
-            return jobTagRepository.Table;
+            return jobTagRepository.GetAll;
         }
 
         public void Update(JobTag entity)

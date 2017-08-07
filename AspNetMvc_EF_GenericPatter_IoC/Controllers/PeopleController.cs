@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Services.Interfaces;
 
 namespace MVC.Controllers
 {
@@ -21,6 +22,7 @@ namespace MVC.Controllers
         /// </summary>
         private readonly IPersonService personService = null;
         private readonly IJobService jobService = null;
+        private readonly IDbContext dbContext = null;
 
         public PeopleController (IPersonService personService, IJobService jobService)
         {

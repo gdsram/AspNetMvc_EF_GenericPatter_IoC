@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DTO;
 using DAL;
+using Services.Interfaces;
 
 namespace Services
 {
@@ -41,9 +39,9 @@ namespace Services
         /// Returns the list of all JobPost
         /// </summary>
         /// <returns></returns>
-        public IQueryable<JobPost> GetAll()
+        public IEnumerable<JobPost> GetAll()
         {
-            return jobPostRepository.Table;
+            return jobPostRepository.GetAll;
         }
 
         public void Update(JobPost jobPost, List<int> jobTagsId)

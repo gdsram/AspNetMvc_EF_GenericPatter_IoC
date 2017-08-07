@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services
+namespace Services.Interfaces
 {
     public interface IJobPostService
     {
-        IQueryable<JobPost> GetAll();
+        IEnumerable<JobPost> GetAll();
         JobPost GetById(int id);
         void Insert(JobPost jobPost);
         void Insert(JobPost jobPost, JobTag jobTag);

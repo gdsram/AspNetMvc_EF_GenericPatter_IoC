@@ -3,11 +3,7 @@ using DTO;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Mvc;
 using Services;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+using Services.Interfaces;
 using System.Web.Mvc;
 
 namespace MVC.Unity
@@ -32,7 +28,7 @@ namespace MVC.Unity
             var container = new UnityContainer();
 
             // Database Contexts
-            container.RegisterType<IDbContext, TeijonDbContext>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IDbContext, CustomBDContext>(new ContainerControlledLifetimeManager());
             container.RegisterType<IDbContext, ManyToManyDBContext>(new ContainerControlledLifetimeManager());
 
             // Repositories

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using DTO;
 using DAL;
+using Services.Interfaces;
 
 namespace Services
 {
@@ -32,9 +29,9 @@ namespace Services
             employerRepository.Insert(entity);
         }
 
-        public IQueryable<Employer> List()
+        public IEnumerable<Employer> List()
         {
-            return employerRepository.Table;
+            return employerRepository.GetAll;
         }
 
         public void Update(Employer entity)

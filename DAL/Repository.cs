@@ -4,6 +4,7 @@ using System.Linq;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Data.Entity.Migrations;
+using System.Collections.Generic;
 
 namespace DAL
 {
@@ -127,13 +128,24 @@ namespace DAL
         /// <summary>
         /// Returns an Linq IQueryable object
         /// </summary>
-        public virtual IQueryable<T> Table
+        public virtual IEnumerable<T> GetAll
         {
             get
             {
                 return this.Entities;
             }
         }
+
+        ///// <summary>
+        ///// Returns an Linq IQueryable object
+        ///// </summary>
+        //public virtual IQueryable<T> Table
+        //{
+        //    get
+        //    {
+        //        return this.Entities;
+        //    }
+        //}
 
         /// <summary>
         /// Preload a list of entities

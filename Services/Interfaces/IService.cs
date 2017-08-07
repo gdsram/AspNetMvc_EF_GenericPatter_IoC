@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services
+namespace Services.Interfaces
 {
     public interface IService
     {
-        IQueryable<BaseEntity> List();
+        IEnumerable<BaseEntity> List();
         BaseEntity GetById(int id);
         void Insert(BaseEntity entity);
         void Update(BaseEntity entity);
